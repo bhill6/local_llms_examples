@@ -6,7 +6,6 @@ from langchain_community.chat_models import ChatOllama
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
-from langchain.output_parsers import PydanticOutputParser
 from langchain.text_splitter import CharacterTextSplitter
 
 
@@ -59,6 +58,7 @@ def process_input(urls, question):
             | model_local
             | StrOutputParser()
     )
+    print("Submitting prompt + context to model")
     return after_rag_chain.invoke(question)
 
 
