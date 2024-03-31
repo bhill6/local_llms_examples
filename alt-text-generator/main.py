@@ -1,5 +1,4 @@
 import gradio as gr
-from PIL import Image
 import base64
 from io import BytesIO
 from ollama import generate
@@ -8,6 +7,7 @@ from transformers import BlipProcessor, BlipForConditionalGeneration
 # Create Blip model for BLIP captions
 processor = BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-large")
 model = BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-captioning-large")
+
 
 # converts image to base 64 format (required for Ollama API)
 def image_to_base64_str(pil_image):
@@ -20,33 +20,28 @@ def image_to_base64_str(pil_image):
 # Define a function to encode the image with base64
 def encode_image(image):
     global processor, model
-        
 
     # Encode the image with base64
-    imgbytes = image.tobytes()
-    blipcaption = "This is a BLIP caption"
-    fullresponse = "### Processing llava model description...\n\n"
+    blip_caption = "This is a BLIP caption"
+    full_response = "### Processing llava model description...\n\n"
 
     inputs = processor(image, return_tensors="pt")
-    out = model.generate(**inputs,max_new_tokens=40)
-    blipcaption = processor.decode(out[0], skip_special_tokens=True)
-    print(blipcaption)
+    out = model.generate(**inputs, max_new_tokens=40)
+    blip_caption = processor.decode(out[0], skip_special_tokens=True)
+    print(blip_caption)
 
-    yield blipcaption,fullresponse
-
+    yield blip_caption, full_response
 
     for response in generate('llava', 'Please describe this image:', images=[image_to_base64_str(image)], stream=True):
-
         response_text = response['response']
         print(response_text, end='', flush=True)
-        fullresponse += response_text
+        full_response += response_text
         if '\n' in response_text:
-            yield blipcaption,fullresponse
+            yield blip_caption, full_response
 
-    yield blipcaption,fullresponse
+    yield blip_caption, full_response
 
-    return blipcaption,fullresponse
-
+    return blip_caption, full_response
 
 
 with gr.Blocks() as demo:
