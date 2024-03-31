@@ -1,0 +1,7 @@
+[
+    {"role":"system", "content":"You are a helpful AI assistant"},
+    {"role":"user", "content":"Remember this word: Orange."},
+    {"role":"assistant", "content":"I will remember the word Orange."},    
+    {"role":"user", "content":"What word did I ask you to remember?"},
+    {"role":"assistant", "content":"You asked me to remember the word Orange"}    
+]
