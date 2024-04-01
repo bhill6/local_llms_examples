@@ -1,4 +1,4 @@
-# Gradio Chat
+# Chat-UI
 
 ## Overview
 

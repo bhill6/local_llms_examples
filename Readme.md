@@ -17,7 +17,7 @@ computers.
   * Demonstrates some Model Parameters
 * **[simple_chat](simple_chat/Readme.md)**
   * Demonstrates the use and maintenance of Chat History to provide ongoing context to the LLM
-* **[gradiotest](chat-ui/Readme.md)**
+* **[chat-ui](chat-ui/Readme.md)**
   * Simple Chat web application
   * Demonstrates streaming output to make 'next word' prediction a bit more obvious
   * Allows easy experimentation with System Prompts
