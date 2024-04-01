@@ -18,27 +18,27 @@ effective.
 
 ## Model Parameters
 
-temperature: 
+### temperature 
 Controls the algorithm's creativity.
 
-num_ctx:
+### num_ctx
 Number of tokens in the context window. Setting this to a value larger than the model's own context window may lead
 to poor results, since the model will never be able to 'remember' the entire chat history. This also has a bearing on
 memory use. 
 
-top_k: 
+### top_k 
 Reduces the probability of generating nonsense. A higher value (e.g. 100) will give more diverse answers, while a 
 lower value (e.g. 10) will be more conservative. (Default: 40)
 
-top_p: 
+### top_p 
 Works together with top-k. A higher value (e.g., 0.95) will lead to more diverse text, while a lower value (e.g., 0.5) 
 will generate more focused and conservative text. (Default: 0.9)	
 
-repeat_penalty:
+### repeat_penalty
 Sets how strongly to penalize repetitions. A higher value (e.g., 1.5) will penalize repetitions more strongly, while a 
 lower value (e.g., 0.9) will be more lenient. (Default: 1.1)	
 
-repeat_last_n: 
+### repeat_last_n
 Sets how far back for the model to look back to prevent repetition. (Default: 64, 0 = disabled, -1 = num_ctx)	
 
 
