@@ -2,28 +2,31 @@
 
 ## Overview
 
-This repository contains the code examples described during the Local LLMs presntation at the UW Madison ITPC 2024.
+This repository contains the code examples described during the Local LLMs presentation at the UW Madison ITPC 2024.
+The aim of these examples is to build a hands-on understanding of how LLMs work, how they can be used and their
+various limitations. All rely on freely available tools and data models that can be run locally on most developer's 
+computers.
 
 ## Examples
-* **just-curl**
+* **[just-curl](just-curl/Readme.md)**
   * Just a simple `curl` command to get the LLM to write a story
   * Simple example of OpenAI-compatible Ollama API
-* **simplest_chat**
+* **[simplest_chat](simplest_chat/Readme.md)**
   * Simple Javascript REST example
   * Demonstrates use of a System Prompt
   * Demonstrates some Model Parameters
-* **simple_chat**
+* **[simple_chat](simple_chat/Readme.md)**
   * Demonstrates the use and maintenance of Chat History to provide ongoing context to the LLM
-* **gradiotest**
+* **[gradiotest](gradiotest/Readme.md)**
   * Simple Chat web application
   * Demonstrates streaming output to make 'next word' predication a bit more obvious
   * Allows easy experimentation with System Prompts
-* **rag-embed**
+* **[rag-embed](rag-embed/Readme.md)**
   * Demonstrates a very basic Retrieval Augmented Generation system
 * **llama-index**
   * Demonstrates the use of the LlamaIndex library to implement a RAG system
-* **alt-text-generator**
-  * Demonstrates the use of both a BLIP caption model and a multi-model LLM model to generate image captions
+* **[alt-text-generator](alt-text-generator/Readme.md)**
+  * Demonstrates the use of both a BLIP caption model and a multi-modal LLM model to generate image captions
 * **xkcd-explainer**
   * Leverages a multi-model model to attempt to explain random [xkcd](https://xkcd.com) cartoons.
 
