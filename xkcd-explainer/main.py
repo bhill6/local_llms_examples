@@ -40,7 +40,8 @@ def getandexplain():
 
     # submit the image and the prompt into the LLM. The Ollama API will handle encoding it as appropriate
     # Also set the output to streaming.
-    for response in generate('llava', f'Briefly explain the humor in this comic. The alt-text is {comic.json().get("alt")}', images=[raw.content], stream=True):
+    for response in generate('llava', f'Briefly explain the humor in this comic. The alt-text is {comic.json().get("alt")}',
+                             images=[raw.content], stream=True, options={'temperature': 0}):
         print(response['response'], end='', flush=True)
         fullresponse += response['response']
         # To speed up printing the output slightly, buffer the output by line

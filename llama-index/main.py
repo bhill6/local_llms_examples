@@ -15,5 +15,5 @@ index = VectorStoreIndex.from_documents(
 )
 
 query_engine = index.as_query_engine()
-response = query_engine.query("What was Frankenstein's monsters real name, and what happened to him at the end of the story?")
+response = query_engine.query("What was Frankenstein's monsters real name?")
 print(response)
