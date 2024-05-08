@@ -46,7 +46,7 @@ def process_input(urls, question):
         retriever = vectorstore.as_retriever()
 
     # Use a prompt template that tries to restrict the algorithm to mostly draw 
-    # from the embedded context in it's response.
+    # from the embedded context in its response.
     after_rag_template = """Answer the question based only on the following context:
     {context}
     Question: {question}
@@ -68,4 +68,4 @@ iface = gr.Interface(fn=process_input,
                      outputs="text",
                      title="Document Query with Ollama",
                      description="Enter URLs and a question to query the documents.")
-iface.launch(server_name="0.0.0.0", server_port=7861)
+iface.launch(server_name="127.0.0.1", server_port=7861)

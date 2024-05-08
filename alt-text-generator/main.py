@@ -18,7 +18,7 @@ def image_to_base64_str(pil_image):
 
 
 # Define a function to encode the image with base64
-def encode_image(image):
+def encode_image(image, prompt):
     global processor, model
 
     # Encode the image with base64
@@ -32,7 +32,7 @@ def encode_image(image):
 
     yield blip_caption, full_response
 
-    for response in generate('llava', 'Please describe this image:', images=[image_to_base64_str(image)], stream=True):
+    for response in generate('llava', prompt, images=[image_to_base64_str(image)], stream=True):
         response_text = response['response']
         print(response_text, end='', flush=True)
         full_response += response_text
@@ -52,10 +52,12 @@ with gr.Blocks() as demo:
         with gr.Column():
             llavaArea = gr.Markdown("### Llava model output...\n\n")
     with gr.Row():
-        submitButton = gr.Button(value="Describe")
-        gr.ClearButton(components=[imageArea,blipArea,llavaArea])
+        prompt_string = gr.Textbox(placeholder="Prompt", value='Please describe this image')
+    with gr.Row():
+        submitButton = gr.Button(value="Send")
+        gr.ClearButton(components=[imageArea, blipArea, llavaArea])
     
-    submitButton.click(encode_image, imageArea, [blipArea,llavaArea])
+    submitButton.click(encode_image, [imageArea, prompt_string], [blipArea, llavaArea])
 
 # Launch the interface server
-demo.queue().launch(server_name="0.0.0.0", server_port=7861)
+demo.queue().launch(server_name="127.0.0.1", server_port=7861)

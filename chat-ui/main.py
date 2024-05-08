@@ -46,6 +46,6 @@ def predict(message, history, system_prompt):
 gr.ChatInterface(predict,
                  additional_inputs=[
                      gr.Textbox(base_system_prompt, label="System Prompt")                 
-                ]).launch(server_name="0.0.0.0", server_port=7861)
+                ]).launch(server_name="127.0.0.1", server_port=7861)
 
 

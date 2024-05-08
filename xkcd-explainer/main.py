@@ -22,7 +22,7 @@ def getandexplain():
     comic.raise_for_status()
 
     # begin building the output text, by setting up the comic header and alt-text
-    fullresponse = f'xkcd #{comic.json().get("num")}:\n *{comic.json().get("alt")}*\n'
+    fullresponse = f'xkcd {comic.json().get("num")}:\n {comic.json().get("alt")}\n'
     fullresponse += f'link: https://xkcd.com/{num}'
     fullresponse += '\n---\n'
 
@@ -40,7 +40,7 @@ def getandexplain():
 
     # submit the image and the prompt into the LLM. The Ollama API will handle encoding it as appropriate
     # Also set the output to streaming.
-    for response in generate('llava', 'Explain this comic:', images=[raw.content], stream=True):
+    for response in generate('llava', f'Briefly explain the humor in this comic. The alt-text is {comic.json().get("alt")}', images=[raw.content], stream=True):
         print(response['response'], end='', flush=True)
         fullresponse += response['response']
         # To speed up printing the output slightly, buffer the output by line
@@ -59,6 +59,6 @@ def getandexplain():
 # Create a Gradio interface
 iface = gr.Interface(fn=getandexplain,
                      inputs=None,
-                     outputs=["image",gr.Markdown(label="Explanation", show_label=True)],
+                     outputs=[gr.Image(interactive=True, height=400), gr.Markdown(label="Explanation", show_label=True)],
                      title="xkcd Explainer")
-iface.queue().launch(server_name="0.0.0.0", server_port=7861)
+iface.queue().launch(server_name="127.0.0.1", server_port=7861)

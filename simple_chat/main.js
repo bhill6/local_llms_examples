@@ -2,44 +2,52 @@ import readline from 'readline';
 import axios from 'axios';
 import llamaTokenizer from 'llama-tokenizer-js';
 
-var rl = readline.createInterface(process.stdin, process.stdout);
-rl.setPrompt('ohai!> ');
+// create the REPL shell
+let rl = readline.createInterface(process.stdin, process.stdout);
+rl.setPrompt('user> ');
 rl.prompt();
 
-var messages = [
+// Message history list
+// Each new request and response will be appended to it,
+// and it's included in full at the beginning of each new request.
+let messages = [
     {
-      "role": "system",
-      "content": "You are a helpful assistant."      
+        "role": "system",
+        "content": "You are a helpful assistant."
     }
 ];
 
+// called each time the user enters a line of text
 function processInput(inputString) {
+    //push the user's request onto the message history list
     messages.push({
         "role":"user",
         "content":inputString
     });
-    var request = {
+
+    let request = {
         "model": "mistral",
         "messages": messages
     };
-    // console.log(request)
+    //calculateTokens will log how many tokens the entire history list is using
     calculateTokens(messages)
+    //send the request to the LLM API
     axios.post('http://127.0.0.1:11434/v1/chat/completions', request)
         .then(function (response) {
             // handle success
             console.log("assistant> "+response.data.choices[0].message.content);
-            messages.push(response.data.choices[0].message);   
 
-            if (messages.length > 5) {
-                messages.shift();
-            } 
+            //push the response onto the history list
+            messages.push(response.data.choices[0].message);
+
+            //calculateTokens will log how many tokens the entire history list is using
             calculateTokens(messages)
             rl.prompt();        
         })
 }
 
 function calculateTokens(messages) {
-    var buffer = "";
+    let buffer = "";
     messages.forEach(element => {
         buffer = buffer + element.content
     });
@@ -61,6 +69,6 @@ rl.on('line', function(line) {
     }
     // rl.prompt();
 }).on('close', function() {
-    console.log('kbai!')
+    console.log('bye!')
     process.exit(0);
 });

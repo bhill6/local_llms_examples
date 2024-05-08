@@ -1,10 +1,9 @@
 import readline from 'readline';
 import axios from 'axios';
-import llamaTokenizer from 'llama-tokenizer-js';
 
 // set up CLI plumbing
-var rl = readline.createInterface(process.stdin, process.stdout);
-rl.setPrompt('ohai!> ');
+let rl = readline.createInterface(process.stdin, process.stdout);
+rl.setPrompt('user> ');
 rl.prompt();
 
 // Model parameters
@@ -22,7 +21,7 @@ let options = {
 // send request to Ollama API and print output to console
 function processInput(inputString) {
     // Set up system prompt
-    var request = {
+    let request = {
         "model": "mistral",
         options: options,
         messages: [{
@@ -36,11 +35,11 @@ function processInput(inputString) {
             //   "content":"You are Mario from super mario bros, acting as an assistant."
             //   "content": "You are an experienced project manager. You are an expert in breaking down tasks and sequencing them in the best order."
         },
-        // append the user's request after the system prompt
-        {
-            "role": "user",
-            "content": inputString
-        }]
+            // append the user's request after the system prompt
+            {
+                "role": "user",
+                "content": inputString
+            }]
     };
     axios.post('http://127.0.0.1:11434/v1/chat/completions', request)
         .then(function (response) {
@@ -62,6 +61,6 @@ rl.on('line', function (line) {
     }
     // rl.prompt();
 }).on('close', function () {
-    console.log('kbai!')
+    console.log('bye!')
     process.exit(0);
 });
