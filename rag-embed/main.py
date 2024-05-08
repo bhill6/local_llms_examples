@@ -18,7 +18,7 @@ cached_urls = None
 def process_input(urls, question):
     global retriever, cached_urls
     # initialize the chat model
-    model_local = ChatOllama(model="mistral")
+    model_local = ChatOllama(model="mistral", temperature=0)
 
     # Clear the retriever to build a new one if the cached_urls change
     if cached_urls != urls:
