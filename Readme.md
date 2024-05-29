@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repository contains the code examples described during the Local LLMs presentation at the UW Madison ITPC 2024.
+This repository contains the code examples described during the Local LLMs presentation at the [UW Madison ITPC 2024](https://itproconf.wisc.edu/conference-2024/).
 The aim of these examples is to build a hands-on understanding of how LLMs work, how they can be used and their
 various limitations. All rely on freely available tools and data models that can be run locally on most developer's 
 computers.
