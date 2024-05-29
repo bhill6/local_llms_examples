@@ -57,7 +57,7 @@ computers.
 3. Install the dependencies
    1. `npm install`
 4. Run the script
-   1. `node main.sh`
+   1. `node main.js`
 
 ### Python Examples
 For best results, I'd suggest creating a separate Python virtual environment in each example directory.
