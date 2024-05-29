@@ -74,4 +74,4 @@ For best results, I'd suggest creating a separate Python virtual environment in 
 
 For examples that provide a web interface, it will be available at [http://localhost:7861](http://localhost:7861)
 
-NOTE: Some of the examples will need to download a relatively large model file (about 5 GB) upon first run. 
+NOTE: Some examples will need to download a relatively large model file (about 5 GB) upon first run. 
