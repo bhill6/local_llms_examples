@@ -2,7 +2,7 @@
 
 ## Overview
 The alt-text-generator project demonstrates how to submit an image to a multi-model LLM for analysis. In this case, 
-we'll ask the model to provide a description of the image. We'll use the LlaVa model to do this.
+we'll ask the model to provide a description of the image. We'll use the [LlaVa model](https://llava-vl.github.io/) to do this.
 
 To provide a contrast, we'll also use a simpler BLIP caption model to generate a shorter description for the image 
 using a BLIP model. 
@@ -14,3 +14,4 @@ generate a text description of the image.
 
 The BLIP model also creates a tokenized representation of the image, based on the images it was trained with, but
 the tokenized description is converted to text and output, instead of it being summarized by an LLM.
+

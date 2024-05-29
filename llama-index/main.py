@@ -2,6 +2,7 @@ from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, Settings
 from llama_index.core.embeddings import resolve_embed_model
 from llama_index.llms.ollama import Ollama
 
+# use a document loader to load the data
 documents = SimpleDirectoryReader("data").load_data()
 
 # bge embedding model

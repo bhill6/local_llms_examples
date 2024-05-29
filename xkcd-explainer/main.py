@@ -40,13 +40,15 @@ def getandexplain():
 
     # submit the image and the prompt into the LLM. The Ollama API will handle encoding it as appropriate
     # Also set the output to streaming.
-    for response in generate('llava', f'Briefly explain the humor in this comic. The alt-text is {comic.json().get("alt")}',
-                             images=[raw.content], stream=True, options={'temperature': 0}):
+    for response in generate('llava',
+                             f'Briefly explain the humor in this comic. The alt-text is: {comic.json().get("alt")}',
+                             images=[raw.content],
+                             stream=True,
+                             options={'temperature': 0}):
         print(response['response'], end='', flush=True)
         fullresponse += response['response']
-        # To speed up printing the output slightly, buffer the output by line
-        if '\n' in response['response']:
-            yield img_url, fullresponse
+        # this repaints the Gradio fields on screen with the updated data
+        yield img_url, fullresponse
 
     # Update the image and the output on-screen
     yield img_url, fullresponse
@@ -60,6 +62,9 @@ def getandexplain():
 # Create a Gradio interface
 iface = gr.Interface(fn=getandexplain,
                      inputs=None,
-                     outputs=[gr.Image(interactive=True, height=400), gr.Markdown(label="Explanation", show_label=True)],
+                     outputs=[
+                         gr.Image(interactive=True, height=400),
+                         gr.Markdown(label="Explanation", show_label=True)
+                     ],
                      title="xkcd Explainer")
 iface.queue().launch(server_name="127.0.0.1", server_port=7861)

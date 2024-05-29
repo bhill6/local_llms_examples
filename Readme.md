@@ -23,11 +23,11 @@ computers.
   * Allows easy experimentation with System Prompts
 * **[rag-embed](rag-embed/Readme.md)**
   * Demonstrates a very basic Retrieval Augmented Generation system
-* **llama-index**
+* **[llama-index](llama-index/Readme.md)**
   * Demonstrates the use of the LlamaIndex library to implement a RAG system
 * **[alt-text-generator](alt-text-generator/Readme.md)**
   * Demonstrates the use of both a BLIP caption model and a multi-modal LLM model to generate image captions
-* **xkcd-explainer**
+* **[xkcd-explainer](xkcd-explainer/Readme.md)**
   * Leverages a multi-model model to attempt to explain random [xkcd](https://xkcd.com) cartoons.
 
 ## Preparation & Requirements

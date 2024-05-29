@@ -1,7 +1,3 @@
-import os
-
-# from langchain_community.chat_models import ChatOpenAI
-# from langchain.schema import AIMessage, HumanMessage, SystemMessage
 import gradio as gr
 from openai import OpenAI
 
@@ -11,13 +7,13 @@ client = OpenAI(
     base_url='http://localhost:11434/v1',
     api_key='cannot-be-blank',  # required, but unused
 )
-base_system_prompt = "You are a helpful assistant. You only reply with facts that verify from training data."
+base_system_prompt = "You are a helpful assistant. You only reply with facts that you can verify from training data."
 
 
 def predict(message, history, system_prompt):
-    # initialize the message history 
+    # initialize the message history
     history_langchain_format = [{"role": "system", "content": system_prompt}]
-    
+
     # append all the previous messages to the message history
     for human, ai in history:
         history_langchain_format.append({"role": "user", "content": human})

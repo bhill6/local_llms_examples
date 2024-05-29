@@ -17,7 +17,7 @@ let options = {
     // seed: 31337    
 }
 
-// Called when you press retu
+// Called when you press return
 // send request to Ollama API and print output to console
 function processInput(inputString) {
     // Set up system prompt
